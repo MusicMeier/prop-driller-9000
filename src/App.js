@@ -23,14 +23,19 @@ export default class App extends React.Component {
         name: 'omega',
         url: 'http://pngimg.com/uploads/transformers/transformers_PNG3.png'
       }
-    ]
+    ],
+    transformersDisplayed: false
+  }
+
+  toggleDisplay = () => {
+    this.setState(previousState => ({transformersDisplayed: !previousState.transformersDisplayed}))
   }
 
   render() {
     return (
       <div className="App">
-        <Header logo={this.state.proptimusLogo}/>
-        <TransformersSection transformers={this.state.proptimusii}/>
+        <Header logo={this.state.proptimusLogo} toggleDisplay={this.toggleDisplay}/>
+        { this.state.transformersDisplayed ? <TransformersSection transformers={this.state.proptimusii}/> : null}
       </div>
     );
   }
